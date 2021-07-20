@@ -1,0 +1,88 @@
+{% extends 'header-footer.html'%}
+{% load static %}
+{% block content %}
+        <!-- START: Main Content-->
+        <main>
+            <div class="container-fluid site-width">
+                <!-- START: Breadcrumbs-->
+                <div class="row ">
+                    <div class="col-12  align-self-center">
+                        <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
+                            <div class="w-sm-100 mr-auto"><h4 class="mb-0">Datatable</h4></div>
+
+                            <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
+                                <li class="breadcrumb-item">Home</li>
+                                <li class="breadcrumb-item">Table</li>
+                                <li class="breadcrumb-item active"><a href="#">Datatable</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: Breadcrumbs-->
+
+                <!-- START: Card Data-->
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <div class="card">
+                            <div class="card-header  justify-content-between align-items-center">
+                                <h4 class="card-title">Event Table </h4>
+                            </div>
+                               <a href="/insert_event/"> <button type="submit"  style=" width: 27%; background-color: beige; margin-left: 379px;" class="btn btn-primary"> Insert  New Event </button> </a>
+
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example" class="display table dataTable table-striped table-bordered" >
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Name</th>
+                                                <th>Image</th>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Location</th>
+                                                <th>SubCat Id</th>
+                                                <th> edit </th>
+                                                <th> delete </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in events %}
+                                            <tr>
+
+                                                <td>{{i.event_id}}</td>
+                                                <td>{{i.event_name}}</td>
+                                                <td>  <img src="{% static '/image/'%}{{i.event_image}}" width="50%" />  </td>
+                                                <td>{{i.event_date}}</td>
+                                                <td>{{i.event_time}}</td>
+                                                <td>{{i.event_location}}</td>
+                                                <td>{{i.subcat_id.subcat_name}}</td>
+                                                <td ><a class="icon-pencil icons" href="/event_edit/{{ i.event_id }}"> </a></td>
+                                                <td > <a class="icon-trash icons" href="/delete_event/{{ i.event_id }}/"> </a></td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Name</th>
+                                                <th>Image</th>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Location</th>
+                                                <th>SubCat Id</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- END: Card DATA-->
+            </div>
+        </main>
+        <!-- END: Content-->
+
+{% endblock %}
+

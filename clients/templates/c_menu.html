@@ -1,0 +1,16 @@
+{% load static %}
+
+{% for o in c %}
+<li class="menu-item-has-children">
+    <a href="/event_list_bycate/{{ o.category_id }}/">{{ o.category_name }}</a>
+    <ul class="sub-menu">
+        {% for s in sc %}
+        {% if s.category_id.category_id == o.category_id %}
+        <li>
+        <a href="/event_list_bycate/{{ s.subcat_id }}/">{{ s.subcat_name }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</li>
+{% endfor %}
