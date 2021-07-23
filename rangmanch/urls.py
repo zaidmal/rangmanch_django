@@ -23,30 +23,33 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('adminlogin/', views.admin_login),
     path('dashboard/', views.admin_dashboard),
-    path('adminform/',views.admin_form),
+    path('adminform/', views.admin_form),
     path('adminprofile/', views.admin_profile),
     path('userstables/', views.users_table),
     path('bookevent-tables/', views.booking_tables),
     path('event-table/', views.services_table),
     path('category-table/', views.category_table),
     path('subcategory-table/', views.subcategory_table),
-    path('event_edit/<int:event_id>/',views.event_edit),
-    path('insert_event/',views.insert_event),
-    path('update_event/<int:event_id>/',views.update_event),
+    path('event_edit/<int:event_id>/', views.event_edit),
+    path('insert_event/', views.insert_event),
+    path('insert_category/', views.insert_category),
+    path('insert_package/', views.insert_package),
+    path('insert_subcat/', views.insert_sub_category),
+    path('update_event/<int:event_id>/', views.update_event),
+    path('package-table/', views.package_tables),
 
-
-
-    #===========================================================
-    path('delete_event/<int:event_id>/',views.delete_event),
-    path('delete_category/<int:category_id>/',views.delete_category),
-    path('delete_subcategory/<int:subcat_id>/',views.delete_subcategory),
+    # ===========================================================
+    path('delete_event/<int:event_id>/', views.delete_event),
+    path('delete_category/<int:category_id>/', views.delete_category),
+    path('delete_subcategory/<int:subcat_id>/', views.delete_subcategory),
+    path('delete_package/<int:pack_id>/', views.delete_package),
 
     # ===============================================================
 
     # clients  urls
 
     # -------------------------------------------------------------------
-    path('clientprofile/',c_views.c_profile),
+
     path('clientindex/', c_views.client_index),
     path('contact-us/', c_views.client_contact),
     path('clientlogin/', c_views.client_login),
@@ -55,7 +58,7 @@ urlpatterns = [
     path('clientf/', c_views.client_f),
     path('aboutus/', c_views.about_us),
     path('clientlogout/', c_views.clogout),
-    path('event-detail/<int:event_id>/', c_views.event_detail),
+    path('event-detail/', c_views.event_detail),
     path('event-list/', c_views.event_list),
     path('event_list_bycate/<int:subcat_id>/', c_views.event_list_bycate),
     path('event_list_bysub_cate/<int:category_id>/', c_views.event_list_bysub_cate),

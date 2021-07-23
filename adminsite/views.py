@@ -12,6 +12,7 @@ def users_table(request):
     return render(request, "users-table.html", {"users": s})
 
 
+
 def booking_tables(request):
     s = bookevent.objects.all()
     return render(request, "bookevent-table.html", {"bevent": s})
@@ -54,6 +55,52 @@ def insert_event(request):
 
     return render(request, "insert_event.html", {"forms": forms,"scat":scat})
 
+
+
+def insert_category(request):
+    scat = subcategory.objects.all()
+    if request.method == "POST":
+        forms = catFroms(request.POST)
+        print("==Event============FROMS ERRORS", forms.errors)
+        if forms.is_valid():
+            forms.save()
+            return redirect("/category-table/")
+        else:
+            pass
+    else:
+        forms = catFroms()
+    return render(request, "insert_category.html",{"forms": forms})
+
+
+def insert_sub_category(request):
+    cat = categorys.objects.all()
+    if request.method == "POST":
+        forms = subcategoryFroms(request.POST)
+        print("==Event============FROMS ERRORS", forms.errors)
+        if forms.is_valid():
+            forms.save()
+            return redirect("/subcategory-table/")
+        else:
+            pass
+    else:
+        forms = subcategoryFroms()
+    return render(request, "insert_subcat.html",{"forms": forms,"cat":cat})
+
+def insert_package(request):
+    pack = package.objects.all()
+    if request.method == "POST":
+        forms = packageFroms(request.POST)
+        print("==Event============FROMS ERRORS", forms.errors)
+        if forms.is_valid():
+            forms.save()
+            return redirect("/package-table/")
+        else:
+            pass
+    else:
+        forms = packageFroms()
+    return render(request, "insert_package.html",{"forms": forms,"pack":pack})
+
+
 # ============================================delete
 def delete_event(request,event_id):
     cate_d=event.objects.get(event_id=event_id)
@@ -70,6 +117,13 @@ def delete_subcategory(request,subcat_id):
     subcat_d=subcategory.objects.get(subcat_id=subcat_id)
     subcat_d.delete()
     return redirect("/subcategory-table/")
+
+def delete_package(request,pack_id):
+    pack_d=package.objects.get(pack_id=pack_id)
+    pack_d.delete()
+    return redirect("/package-table/")
+
+
 
 
 
@@ -90,6 +144,7 @@ def update_event(request, event_id):
         try:
             handle_uploaded_file(request.FILES['event_image'])
             froms.save()
+
             return redirect("/event-table/")
         except:
             print("================", sys.exc_info())
