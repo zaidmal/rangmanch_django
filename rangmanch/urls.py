@@ -46,7 +46,7 @@ urlpatterns = [
     # clients  urls
 
     # -------------------------------------------------------------------
-
+    path('clientprofile/',c_views.c_profile),
     path('clientindex/', c_views.client_index),
     path('contact-us/', c_views.client_contact),
     path('clientlogin/', c_views.client_login),
@@ -55,7 +55,7 @@ urlpatterns = [
     path('clientf/', c_views.client_f),
     path('aboutus/', c_views.about_us),
     path('clientlogout/', c_views.clogout),
-    path('event-detail/', c_views.event_detail),
+    path('event-detail/<int:event_id>/', c_views.event_detail),
     path('event-list/', c_views.event_list),
     path('event_list_bycate/<int:subcat_id>/', c_views.event_list_bycate),
     path('event_list_bysub_cate/<int:category_id>/', c_views.event_list_bysub_cate),

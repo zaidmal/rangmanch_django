@@ -9,13 +9,22 @@ def client_index(request):
     events = event.objects.all()
     return render(request, "index-1.html",{"events":events})
 
-def event_detail(request):
-    return render(request, "event-detail.html")
+def event_detail(request,event_id):
+    eve = event.objects.filter(event_id=event_id)
+    pak = package.objects.filter(event_id=event_id)
+    return render(request, "event-detail.html",{"eve":eve,"pak":pak})
 
 
 def event_list(request):
     events = event.objects.all()
     return render(request, "event-list.html",{"events":events})
+
+
+def c_profile(request):
+    cid=request.session['customer_id']
+    ue=users.objects.get(user_id=cid)
+    return render(request,"profile.html",{"u":ue})
+
 
 def event_list_bycate(request,subcat_id):
     events = event.objects.filter(subcat_id=subcat_id)
@@ -65,6 +74,8 @@ def load_menu(request):
     sue=subcategory.objects.all()
     return render(request,"c_menu.html",{"c":c,"sc":sue})
 
+
+
 def client_login(request):
     if request.method == "POST":
         u_email = request.POST["email"]
@@ -81,6 +92,9 @@ def client_login(request):
         else:
             messages.error(request, "Invaild password and email")
             return redirect("/clientindex/")
+
+
+
 
 
 def clogout(request):

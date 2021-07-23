@@ -68,6 +68,7 @@ class bookevent(models.Model):
     payment_status = models.IntegerField()
     req_date = models.DateTimeField()
     user_id = models.ForeignKey(users, on_delete=models.PROTECT)
+    package_id=models.ForeignKey(package, on_delete=models.PROTECT)
 
     class Meta:
         db_table = "book_event"
