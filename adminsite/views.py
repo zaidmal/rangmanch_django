@@ -176,7 +176,8 @@ def admin_profile(request):
     return render(request, "admin_profile.html")
 
 def admin_dashboard(request):
-    return render(request, "adminDashboard.html")
+    s = users.objects.all()
+    return render(request, "adminDashboard.html",{"users":s})
 
 def admin_form(request):
     return render(request, "adminForm.html")
